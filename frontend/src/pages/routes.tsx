@@ -1,9 +1,9 @@
 // // routes.ts
 import type { ReactElement } from 'react';
 // import Login from './login';
-import Pets from '@/pages/pets';
+// import Pets from '@/pages/pets';
 import Home from '@/pages/home';
-import Armor from '@/pages/armor';
+// import Armor from '@/pages/armor';
 import Upload from '@/pages/upload';
 
 // export interface AppRoute {
