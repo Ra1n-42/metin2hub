@@ -27,8 +27,7 @@ function renderRoutes(routes: AppRoute[]): React.ReactNode {
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-
+    <div className="min-h-screen">
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>

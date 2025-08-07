@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import { dummyAssets } from '@/data/assets';
 // import type { Asset } from '@/data/assets';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 export default function Home() {
     const [search, setSearch] = useState('');
@@ -22,7 +29,22 @@ export default function Home() {
                     placeholder="Suche nach Name..."
                     className="border p-2 w-full"
                 />
-                <select
+                <Select onValueChange={(value) => setFilter(value)} defaultValue={filter}>
+                    <SelectTrigger className="w-[180px]">
+                        <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="all">Alle Typen</SelectItem>
+                        <SelectItem value="weapon">Waffen</SelectItem>
+                        <SelectItem value="armor">Rüstungen</SelectItem>
+                        <SelectItem value="map">Maps</SelectItem>
+                        <SelectItem value="mount">Reittiere</SelectItem>
+                        <SelectItem value="npc">NPCs</SelectItem>
+                        <SelectItem value="effect">Effekte</SelectItem>
+                        <SelectItem value="icon">Icons</SelectItem>
+                    </SelectContent>
+                </Select>
+                {/* <select
                     value={filter}
                     onChange={(e) => setFilter(e.target.value)}
                     className="border p-2"
@@ -35,7 +57,7 @@ export default function Home() {
                     <option value="npc">NPCs</option>
                     <option value="effect">Effekte</option>
                     <option value="icon">Icons</option>
-                </select>
+                </select> */}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
