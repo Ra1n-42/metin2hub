@@ -26,4 +26,4 @@ jobs:
         with:
           context: ./frontend
           push: true
-          tags: yourdockerhubuser/metin2hub-frontend:latest
+          tags: ${{secrets.DOCKERHUB_USERNAME}}/metin2hub-frontend:latest
