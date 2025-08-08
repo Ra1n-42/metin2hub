@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { appRoutes } from '@/pages/routes';
 import { Typography } from '@mui/material';
-import { ModeToggle } from '../mode-toggle';
+import { ModeToggle } from '@/components/mode-toggle';
 
 function Header() {
 
@@ -14,7 +14,7 @@ function Header() {
 
                         // 📌 Standard NavLink
                         return (
-                            <div className='flex items-center'>
+                            <div key={route.path} className='flex items-center'>
                                 <Typography variant="h6" >
 
                                     <NavLink

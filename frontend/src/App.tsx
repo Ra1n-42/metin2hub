@@ -7,10 +7,6 @@ import type { AppRoute } from './pages/routes';
 
 function renderRoutes(routes: AppRoute[]): React.ReactNode {
   return routes.map((route) => {
-    // Wenn untergeordnete Routen vorhanden sind
-    if (route.children && route.children.length > 0) {
-      return renderRoutes(route.children); // rekursiv weiter
-    }
 
     // Nur Routen mit `element` werden gerendert
     if (!route.element || !route.path) return null;
