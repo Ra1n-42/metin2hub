@@ -6,12 +6,15 @@ import { Link } from "react-router-dom";
 export default function Home() {
 
     const groupedAssets = {
-        Maps: dummyAssets.filter((a) => a.type === 'map'),
         Waffen: dummyAssets.filter((a) => a.type === 'weapon'),
         Rüstungen: dummyAssets.filter((a) => a.type === 'armor'),
+        Costüme: dummyAssets.filter((a) => a.type === 'costumes'),
+        Mounts: dummyAssets.filter((a) => a.type === 'mount'),
         NPCs: dummyAssets.filter((a) => a.type === 'npc'),
+        Maps: dummyAssets.filter((a) => a.type === 'map'),
         Effekte: dummyAssets.filter((a) => a.type === 'effect'),
         Icons: dummyAssets.filter((a) => a.type === 'icon'),
+
     };
 
     return (
