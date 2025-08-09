@@ -93,4 +93,26 @@
     background-color: hsl(var(--accent)) !important;
     color: hsl(var(--accent-foreground)) !important;
   }
+
+  /* Tooltip Fixes */
+  [data-radix-tooltip-content] {
+    background-color: hsl(var(--popover)) !important;
+    color: hsl(var(--popover-foreground)) !important;
+    border: 1px solid hsl(var(--border)) !important;
+  }
+
+  /* Tooltip Arrow Fix */
+  [data-radix-popper-arrow] {
+    fill: hsl(var(--popover)) !important;
+    stroke: hsl(var(--border)) !important;
+    stroke-width: 1px !important;
+  }
+
+  /* Alternative Tooltip Arrow Fix falls das erste nicht funktioniert */
+  [data-radix-tooltip-content] > svg {
+    fill: hsl(var(--popover)) !important;
+    stroke: hsl(var(--border)) !important;
+    stroke-width: 1px !important;
+  }
+
 }

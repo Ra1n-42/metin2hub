@@ -2,19 +2,34 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import type { Asset } from "@/data/assets";
 import { getCharacterImage } from "@/data/assets";
-import { Mars, Venus, Download } from "lucide-react";
+import { Mars, Venus, Download, BadgeCheckIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { SimpleTooltip } from "@/components/SimpleTooltip";
+import { Link } from "react-router-dom";
 
 export default function AssetCard({ asset }: { asset: Asset }) {
     return (
-        <Card className="w-full max-w-[280px] flex flex-col rounded-2xl shadow-md overflow-hidden border border-muted bg-background transition hover:shadow-xl">
+        <Card className="w-full min-w-60 max-w-70 flex flex-col rounded-2xl shadow-md overflow-hidden border border-muted bg-background transition hover:shadow-xl">
             {/* Bildbereich */}
             <div className="relative w-full h-44 bg-muted">
+                {/* Gender icons floating */}
+                <div className="absolute top-3 right-3 flex space-x-1">
+                    {asset.gender?.map((gender) => (
+                        <div key={gender} className="bg-white/20 backdrop-blur-md rounded-full">
+                            {gender === 'male'
+                                ? <div className="h-4 w-4 rounded-full bg-blue-400 flex items-center justify-center text-white text-xs font-bold"><Mars /></div>
+                                : <div className="h-4 w-4 rounded-full bg-pink-400 flex items-center justify-center text-white text-xs font-bold"><Venus /></div>
+                            }
+                        </div>
+                    ))}
+                </div>
                 {asset.previewUrl ? (
                     <img
                         src={asset.previewUrl}
                         alt={asset.name}
                         className="w-full h-full object-cover"
+                        loading="lazy" // Browser lädt erst, wenn sichtbar.
+                        decoding="async" // Rendering wird nicht blockiert.
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
@@ -24,27 +39,36 @@ export default function AssetCard({ asset }: { asset: Asset }) {
             </div>
 
             {/* Inhalt */}
-            <CardHeader className="pb-2">
-                {/* Title with gradient text */}
+            <CardHeader className="pb-1">
                 <h3 className="font-bold text-xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
                     {asset.name}
                 </h3>
 
                 {/* Creator info with enhanced styling */}
-                <div className="flex items-center space-x-3">
-                    <div className="relative">
-                        <img
-                            className="rounded-full h-10 w-10 ring-2 ring-purple-200 dark:ring-purple-800 transition-all duration-300 hover:ring-4"
-                            src={asset.creator?.avatar}
-                            alt={asset.creator?.name}
-                        />
-                        <div className="absolute -bottom-1 -right-1 bg-green-500 rounded-full h-3 w-3 ring-2 ring-white dark:ring-gray-900"></div>
+                <Link to={"/"}>
+                    <div className="flex items-center space-x-3 transition-all duration-300 hover:-translate-y-1 hover:scale-105 rounded-2xl border-white hover:border-b-2 hover:border-r-2">
+                        <div className="relative">
+                            <img
+                                className="rounded-full h-9 w-9 ring-2 ring-purple-200 dark:ring-purple-800"
+                                src={asset.creator?.avatar}
+                                alt={asset.creator?.name}
+                            />
+                            {/* Badge Icon mit eigenem Container für korrekte Positionierung */}
+                            <div className="absolute -bottom-1 -right-1">
+                                <SimpleTooltip content="verified user" side="top">
+                                    <div className="bg-blue-500 rounded-full h-4 w-4 flex items-center justify-center">
+                                        <BadgeCheckIcon className="h-full w-full text-white" />
+                                    </div>
+                                </SimpleTooltip>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p className="dark:text-gray-200 text-foreground font-medium text-xl">{asset.creator?.name}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">Creator</p>
+                        </div>
                     </div>
-                    <div>
-                        <p className="font-medium text-gray-800 dark:text-gray-200">{asset.creator?.name}</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400">Creator</p>
-                    </div>
-                </div>
+                </Link>
             </CardHeader>
 
             <CardContent className="flex flex-col gap-3">
@@ -52,38 +76,30 @@ export default function AssetCard({ asset }: { asset: Asset }) {
                 <Badge variant="outline" className="w-fit capitalize">
                     {asset.type}
                 </Badge>
-
-                {/* Gender */}
-                {asset.gender && asset.gender.length > 0 && (
-                    <div className="flex gap-1 items-center">
-                        {asset.gender.map((gender) =>
-                            gender === "male" ? (
-                                <Mars key="male" className="h-5 w-5 text-blue-500" />
-                            ) : (
-                                <Venus key="female" className="h-5 w-5 text-pink-500" />
-                            )
-                        )}
-                    </div>
-                )}
-
-                {/* Klassen */}
+                {/* Character classes with improved layout */}
                 {asset.classes && asset.classes.length > 0 && (
-                    <div className="flex gap-2 flex-wrap">
-                        {asset.classes.map((cls) => (
-                            <img
-                                key={cls}
-                                src={getCharacterImage(cls)}
-                                alt={cls}
-                                className="h-6 w-6 rounded-md border bg-white dark:bg-muted"
-                            />
-                        ))}
+                    <div className="space-y-2">
+                        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">Race</p>
+                        <div className="flex space-x-2">
+                            {asset.classes.map((characterClass, index) => (
+                                <div key={index} className="relative group/class">
+                                    <SimpleTooltip content={characterClass} side="bottom">
+                                        <img
+                                            className="rounded-lg h-8 w-8 ring-2 ring-gray-200 dark:ring-gray-700 transition-all duration-300 hover:ring-purple-400 hover:scale-110"
+                                            src={getCharacterImage(characterClass)}
+                                            alt={characterClass}
+                                        />
+                                    </SimpleTooltip>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 )}
             </CardContent>
 
             {/* Footer */}
             <CardFooter className="mt-auto pt-2 border-t">
-                <Button variant="ghost" className="w-full justify-center gap-2" asChild>
+                <Button variant="ghost" className="w-full justify-center gap-2 transition-all duration-300 hover:scale-110" asChild>
                     <a href={asset.fileUrl} download>
                         <Download className="h-4 w-4" />
                         Download

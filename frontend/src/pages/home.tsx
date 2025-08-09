@@ -6,13 +6,13 @@ import { Link } from "react-router-dom";
 export default function Home() {
 
     const groupedAssets = {
-        Waffen: dummyAssets.filter((a) => a.type === 'weapon'),
-        Rüstungen: dummyAssets.filter((a) => a.type === 'armor'),
-        Costüme: dummyAssets.filter((a) => a.type === 'costumes'),
+        Weapons: dummyAssets.filter((a) => a.type === 'weapon'),
+        Armory: dummyAssets.filter((a) => a.type === 'armor'),
+        Costumes: dummyAssets.filter((a) => a.type === 'costumes'),
         Mounts: dummyAssets.filter((a) => a.type === 'mount'),
         NPCs: dummyAssets.filter((a) => a.type === 'npc'),
         Maps: dummyAssets.filter((a) => a.type === 'map'),
-        Effekte: dummyAssets.filter((a) => a.type === 'effect'),
+        Effects: dummyAssets.filter((a) => a.type === 'effect'),
         Icons: dummyAssets.filter((a) => a.type === 'icon'),
 
     };
@@ -24,10 +24,10 @@ export default function Home() {
                     Metin2 Asset Hub
                 </h1>
                 <p className="text-gray-500 dark:text-gray-400 text-lg mb-4 max-w-2xl mx-auto">
-                    Entdecke Maps, Waffen, Rüstungen, NPCs und mehr für dein Modding-Projekt.
+                    Discover maps, weapons, armor, NPCs, and more for your modding project, all for free.
                 </p>
                 <Button asChild variant="outline">
-                    <Link to="/assets?type=map">Alle Maps ansehen</Link>
+                    <Link to="/assets?type=map">Show All Maps</Link>
                 </Button>
 
             </section>
