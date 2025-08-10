@@ -1,8 +1,11 @@
-
 function Footer() {
+    const year = new Date().getFullYear();
+
     return (
-        <div className='text-foreground w-full h-15'>footer</div>
-    )
+        <footer className="text-foreground w-full py-4 border-t border-gray-300 text-center text-sm">
+            <p>© {year} Dein Firmenname. Alle Rechte vorbehalten.</p>
+        </footer>
+    );
 }
 
-export default Footer
+export default Footer;

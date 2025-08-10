@@ -49,7 +49,7 @@ export default function AssetCard({ asset }: { asset: Asset }) {
                     <div className="flex items-center space-x-3 transition-all duration-300 hover:-translate-y-1 hover:scale-105 rounded-2xl border-white hover:border-b-2 hover:border-r-2">
                         <div className="relative">
                             <img
-                                className="rounded-full h-9 w-9 ring-2 ring-purple-200 dark:ring-purple-800"
+                                className="rounded-full h-9 w-9 ring-2 ring-gray-500 dark:ring-green-500"
                                 src={asset.creator?.avatar}
                                 alt={asset.creator?.name}
                             />
