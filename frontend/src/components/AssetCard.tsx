@@ -2,10 +2,40 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import type { Asset } from "@/data/assets";
 import { getCharacterImage } from "@/data/assets";
-import { Mars, Venus, Download, BadgeCheckIcon } from "lucide-react";
+import { Mars, Venus, Download, BadgeCheckIcon, Ellipsis, Flag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SimpleTooltip } from "@/components/SimpleTooltip";
 import { Link } from "react-router-dom";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
+
+function TheMoreComponent() {
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="h-6 w-7 cursor-pointer bg-white/10 backdrop-blur-sm hover:bg-white/50 ">
+                    <Ellipsis className="h-4 w-4 text-white" />
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+                <DropdownMenuItem className="cursor-pointer">
+                    <div className="flex items-center justify-center">
+                        <Flag />
+                        <p className="ml-2">
+                            Report
+                        </p>
+                    </div>
+                </DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+    )
+}
+
 
 export default function AssetCard({ asset }: { asset: Asset }) {
     return (
@@ -14,14 +44,18 @@ export default function AssetCard({ asset }: { asset: Asset }) {
             <div className="relative w-full h-44 bg-muted">
                 {/* Gender icons floating */}
                 <div className="absolute top-3 right-3 flex space-x-1">
-                    {asset.gender?.map((gender) => (
-                        <div key={gender} className="bg-white/20 backdrop-blur-md rounded-full">
-                            {gender === 'male'
-                                ? <div className="h-4 w-4 rounded-full bg-blue-400 flex items-center justify-center text-white text-xs font-bold"><Mars /></div>
-                                : <div className="h-4 w-4 rounded-full bg-pink-400 flex items-center justify-center text-white text-xs font-bold"><Venus /></div>
-                            }
-                        </div>
-                    ))}
+                    <div className="flex items-center gap-1.5">
+
+                        {asset.gender?.map((gender) => (
+                            <div key={gender} className="h-4 w-4 bg-white/20 backdrop-blur-md rounded-full">
+                                {gender === 'male'
+                                    ? <div className="h-4 w-4 rounded-full bg-blue-400 flex items-center justify-center text-white text-xs font-bold"><Mars /></div>
+                                    : <div className="h-4 w-4 rounded-full bg-pink-400 flex items-center justify-center text-white text-xs font-bold"><Venus /></div>
+                                }
+                            </div>
+                        ))}
+                        <TheMoreComponent />
+                    </div>
                 </div>
                 {asset.previewUrl ? (
                     <img
@@ -37,7 +71,6 @@ export default function AssetCard({ asset }: { asset: Asset }) {
                     </div>
                 )}
             </div>
-
             {/* Inhalt */}
             <CardHeader className="pb-1">
                 <h3 className="font-bold text-xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
