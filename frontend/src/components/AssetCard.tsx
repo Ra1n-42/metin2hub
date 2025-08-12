@@ -2,16 +2,17 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import type { Asset } from "@/data/assets";
 import { getCharacterImage } from "@/data/assets";
-import { Mars, Venus, Download, BadgeCheckIcon, Ellipsis, Flag } from "lucide-react";
+import { Mars, Venus, Download, BadgeCheckIcon, Ellipsis, Flag, Flame, Eye } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SimpleTooltip } from "@/components/SimpleTooltip";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useEffect, useState } from "react";
 
 
 function TheMoreComponent() {
@@ -38,14 +39,48 @@ function TheMoreComponent() {
 
 
 export default function AssetCard({ asset }: { asset: Asset }) {
+    const [showPreview, setShowPreview] = useState(false);
+    const [currentPreview, setCurrentPreview] = useState<string | undefined>(undefined);
+    const navigate = useNavigate();
+
+    const hotVotes = asset.hotVotes ?? 0;
+    const viewer = asset.allViewer ?? 0;
+
+    useEffect(() => {
+        if (!showPreview || !asset.hoverImages || asset.hoverImages.length === 0) return;
+        let index = 0;
+
+        setCurrentPreview(asset.hoverImages[0]); // Start mit erstem Bild
+
+        const interval = setInterval(() => {
+            index = (index + 1) % asset.hoverImages!.length;
+            setCurrentPreview(asset.hoverImages![index]);
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [showPreview, asset.hoverImages]);
+
+    function handleCardClick() {
+        navigate(`/asset/${asset.id}`);
+    }
     return (
         <Card className="w-full min-w-60 max-w-70 flex flex-col rounded-2xl shadow-md overflow-hidden border border-muted bg-background transition hover:shadow-xl">
             {/* Bildbereich */}
-            <div className="relative w-full h-44 bg-muted">
+            <div className="relative w-full h-44 bg-muted" onClick={handleCardClick}>
                 {/* Gender icons floating */}
                 <div className="absolute top-3 right-3 flex space-x-1">
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-1.5 z-10">
+                        {/* Viewer Anzeige */}
+                        <div className="flex items-center gap-1 text-blue-500" title="Viewer">
+                            <Eye className="w-5 h-5" />
+                            <span>{viewer}</span>
+                        </div>
 
+                        {/* Hot Votes Anzeige */}
+                        <div className="flex items-center gap-1 text-red-500 font-semibold" title="Hot votes">
+                            <Flame className="w-5 h-5" />
+                            <span>{hotVotes}</span>
+                        </div>
                         {asset.gender?.map((gender) => (
                             <div key={gender} className="h-4 w-4 bg-white/20 backdrop-blur-md rounded-full">
                                 {gender === 'male'
@@ -57,14 +92,27 @@ export default function AssetCard({ asset }: { asset: Asset }) {
                         <TheMoreComponent />
                     </div>
                 </div>
-                {asset.previewUrl ? (
-                    <img
-                        src={asset.previewUrl}
-                        alt={asset.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy" // Browser lädt erst, wenn sichtbar.
-                        decoding="async" // Rendering wird nicht blockiert.
-                    />
+                {asset.thumbnail ? (
+                    <div
+                        className="relative w-full h-44 bg-muted"
+                        onMouseEnter={() => setShowPreview(true)}
+                        onMouseLeave={() => setShowPreview(false)}>
+
+                        {showPreview && asset.hoverImages?.length ? (<img
+                            src={currentPreview}
+                            alt="hoverImages"
+                            className="w-full h-full object-cover"
+                            loading="lazy" // Browser lädt erst, wenn sichtbar.
+                            decoding="async" // Rendering wird nicht blockiert.
+                        />) : (
+                            <img
+                                src={asset.thumbnail}
+                                alt={asset.name}
+                                className="w-full h-full object-cover"
+                                loading="lazy" // Browser lädt erst, wenn sichtbar.
+                                decoding="async" // Rendering wird nicht blockiert.
+                            />)}
+                    </div>
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
                         Kein Bild verfügbar
@@ -133,11 +181,18 @@ export default function AssetCard({ asset }: { asset: Asset }) {
             {/* Footer */}
             <CardFooter className="mt-auto pt-2 border-t">
                 <Button variant="ghost" className="w-full justify-center gap-2 transition-all duration-300 hover:scale-110" asChild>
-                    <a href={asset.fileUrl} download>
-                        <Download className="h-4 w-4" />
-                        Download
-                    </a>
+                    {asset.price ? (
+                        <a href={asset.creator?.contact ?? "#"}>
+                            {asset.price} - Contact Seller
+                        </a>
+                    ) : (
+                        <a href={asset.fileUrl} download>
+                            <Download className="h-4 w-4" />
+                            Download
+                        </a>
+                    )}
                 </Button>
+
             </CardFooter>
         </Card>
     );

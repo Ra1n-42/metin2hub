@@ -10,6 +10,7 @@ export default function Home() {
         Armory: dummyAssets.filter((a) => a.type === 'armor'),
         Costumes: dummyAssets.filter((a) => a.type === 'costumes'),
         Mounts: dummyAssets.filter((a) => a.type === 'mount'),
+        Pets: dummyAssets.filter((a) => a.type === 'pet'),
         NPCs: dummyAssets.filter((a) => a.type === 'npc'),
         Maps: dummyAssets.filter((a) => a.type === 'map'),
         Effects: dummyAssets.filter((a) => a.type === 'effect'),
