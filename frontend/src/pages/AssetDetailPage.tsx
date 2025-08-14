@@ -4,28 +4,18 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { SimpleTooltip } from "@/components/SimpleTooltip";
-import {
-    Download,
-    Flag,
-    Flame,
-    Eye,
-    ArrowLeft,
-    Share2,
-    Heart,
-    Tag,
-    User,
-    CheckCircle,
-    Mars, Venus
-} from "lucide-react";
+import { Download, Flag, Flame, Eye, ArrowLeft, Share2, Tag, User, Mars, Venus, BadgeCheckIcon } from "lucide-react";
 import type { Asset } from '@/data/assets';
 import { getAssetById, getCharacterImage } from '@/data/assets';
+import { Dialog, DialogTrigger } from '@/components/ui/dialog';
+import { ReportDialogContent } from '@/components/ReportDialog';
 
 export default function AssetDetailPage() {
     const { id } = useParams<{ id: string }>();
     const [asset, setAsset] = useState<Asset | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [isLiked, setIsLiked] = useState(false);
 
+    // set id automatic when changing
     useEffect(() => {
         if (!id) return;
         const assetData = getAssetById(Number(id));
@@ -53,7 +43,7 @@ export default function AssetDetailPage() {
                 {/* Back Button */}
                 <div className="mb-6">
                     <Link to="/">
-                        <Button variant="ghost" className="gap-2 hover:bg-accent">
+                        <Button variant="ghost" className="gap-2 hover:bg-accent cursor-pointer">
                             <ArrowLeft className="h-4 w-4" />
                             Back to Assets
                         </Button>
@@ -133,20 +123,26 @@ export default function AssetDetailPage() {
                                         {asset.name}
                                     </h1>
                                     <div className="flex gap-2">
-                                        <Button
+                                        {/* <Button
                                             variant="outline"
                                             size="sm"
                                             onClick={() => setIsLiked(!isLiked)}
-                                            className={`${isLiked ? 'text-red-500 border-red-500' : ''}`}
+                                            className={`cursor-pointer ${isLiked ? 'text-red-500 border-red-500' : ''}`}
                                         >
                                             <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />
-                                        </Button>
-                                        <Button variant="outline" size="sm">
+                                        </Button> */}
+                                        <Button variant="outline" size="sm" className='cursor-pointer'>
                                             <Share2 className="h-4 w-4" />
                                         </Button>
-                                        <Button variant="outline" size="sm">
-                                            <Flag className="h-4 w-4" />
-                                        </Button>
+                                        <Dialog>
+                                            <DialogTrigger asChild>
+
+                                                <Button variant="outline" size="sm" className='cursor-pointer'>
+                                                    <Flag className="h-4 w-4" />
+                                                </Button>
+                                            </DialogTrigger>
+                                            <ReportDialogContent assetName={asset.name} assetId={asset.id} />
+                                        </Dialog>
                                     </div>
                                 </div>
 
@@ -156,14 +152,15 @@ export default function AssetDetailPage() {
                                         <div className="flex items-center space-x-4 p-4 rounded-xl border border-border hover:border-purple-300 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 bg-card">
                                             <div className="relative">
                                                 <img
-                                                    className="rounded-full h-12 w-12 ring-2 ring-border"
-                                                    src={asset.creator.avatar}
-                                                    alt={asset.creator.name}
+                                                    className="rounded-full h-12 w-12 ring-2 ring-gray-500 dark:ring-green-500"
+                                                    src={asset.creator?.avatar}
+                                                    alt={asset.creator?.name}
                                                 />
+                                                {/* Badge Icon mit eigenem Container für korrekte Positionierung */}
                                                 <div className="absolute -bottom-1 -right-1">
-                                                    <SimpleTooltip content="Verified user" side="top">
-                                                        <div className="bg-blue-500 rounded-full h-5 w-5 flex items-center justify-center">
-                                                            <CheckCircle className="h-3 w-3 text-white" />
+                                                    <SimpleTooltip content="verified user" side="top">
+                                                        <div className="bg-blue-500 rounded-full h-4 w-4 flex items-center justify-center">
+                                                            <BadgeCheckIcon className="h-full w-full text-white" />
                                                         </div>
                                                     </SimpleTooltip>
                                                 </div>
@@ -257,7 +254,7 @@ export default function AssetDetailPage() {
                                         </Button>
                                     ) : (
                                         <Button className="w-full h-12 text-lg font-semibold bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105" asChild>
-                                            <a href={asset.fileUrl} download>
+                                            <a href={asset.fileUrl} download className='text-white'>
                                                 <Download className="h-5 w-5 mr-2" />
                                                 Free Download
                                             </a>
