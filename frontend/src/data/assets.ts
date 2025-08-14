@@ -1,6 +1,9 @@
 export type CharacterClass = 'warrior' | 'ninja' | 'sura' | 'shaman' | 'lycan';
+export const assetTypes = ['weapon', 'armor', 'map', 'mount', 'npc', 'effect', 'icon', 'pet', 'costumes'] as const;
 type Gender = 'male' | 'female' ;
-type AssetType = 'weapon' | 'armor' | 'map' | 'mount' | 'npc' | 'effect' | 'icon'| 'pet' | 'costumes';
+
+// AssetType will be: 'weapon' | 'armor' | 'map' | 'mount' | 'npc' | 'effect' | 'icon'| 'pet' | 'costumes'
+type AssetType = typeof assetTypes[number];
 
 // Angepasste Hilfsfunktion, die die neuen Typen nutzt
 export const getCharacterImage = (
@@ -43,13 +46,13 @@ export function getAssetById(id: number): Asset | null {
 export const dummyAssets: Asset[] = [
   {
     id: 1,
-    name: "Admiral costumes",
+    name: "Admiral costumes (with test details)",
     type: "costumes",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2020/03/costume_admiral.jpg?ssl=1",
     hoverImages: [
       "https://i0.wp.com/plechito.com/wp-content/uploads/elementor/thumbs/Bez-n%C3%A1zvu-4-nymmkwjuoavu9hu3znb9fnsz8grd9g6x7601bpcvls.png?w=1200&ssl=1",
       "https://i0.wp.com/plechito.com/wp-content/uploads/2022/10/mount1.jpg?ssl=1",
-      "https://i0.wp.com/plechito.com/wp-content/uploads/2018/11/Santa_claus.jpg"
+      "https://i0.wp.com/plechito.com/wp-content/uploads/2018/11/Santa_claus.jpg",
     ],
     fileUrl: "https://mega.nz/file/vlgXnYQB#8YL8rrh77GL7hI5rKhmVFwS0Ur8LGVG0AsFd94hPz1Q",
     creator: {name: "plechito", avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
@@ -121,7 +124,7 @@ export const dummyAssets: Asset[] = [
     classes: ['warrior', 'ninja', 'sura', 'shaman', 'lycan'],
   },
   {
-    id: 8,
+    id: 9,
     name: "Ancient arena",
     type: "map",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2025/04/map.jpg?ssl=1",
@@ -129,7 +132,7 @@ export const dummyAssets: Asset[] = [
     price: "30€",   
   },
   {
-    id: 9,
+    id: 10,
     name: "Guild wars map 3",
     type: "map",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2018/10/guild_wars_map3.png",
@@ -137,7 +140,7 @@ export const dummyAssets: Asset[] = [
     price: "30€",   
   },
   {
-    id: 10,
+    id: 11,
     name: "Guild wars map 2",
     type: "map",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2018/10/guild_wars_map2.png",
@@ -145,3 +148,16 @@ export const dummyAssets: Asset[] = [
     price: "20€",   
   },
 ];
+
+
+
+
+
+
+
+export const groupedAssets = Object.fromEntries(
+        assetTypes.map(type => [
+            type.charAt(0).toUpperCase() + type.slice(1),
+            dummyAssets.filter(asset => asset.type === type)
+        ])
+    );
