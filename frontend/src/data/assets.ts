@@ -165,7 +165,25 @@ export const dummyAssets: Asset[] = [
     thumbnail: "https://metin2.download/picture/9QjlailLA4yVN00MrJEbH6Op1ki2yma5/.png",
     hoverImages: ["https://metin2.download/picture/bY0S043zX3ri8518L77NvoPwiCXa7G07/.gif", "https://metin2.download/picture/t85aAjZEqWUfCH9QKt0R3coz3mPI4gw8/.png"],
     creator: {name: "Zrye", verified: true, avatar: "https://metin2.dev/uploads/profile-photos/monthly_2025_07/Unbenannt-1.thumb.jpg.f4928dfaa7ff595bb845a16b22641876.jpg"},
-  }
+  },
+  {
+    id: 14,
+    name: "Drop Effect",
+    type: "effect",
+    thumbnail: "https://realis3d.xyz/images/4ae5ace2-1b2a-4d88-922b-c373dcab4128.gif",
+    fileUrl: "https://realis3d.xyz/product/67081f0952732bd598f97582",
+    creator: {name: "Realis", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/ab/103971-ab61f108721c673234430036a5c3374851f1d8f0.png"},
+  },
+  {
+    id: 15,
+    name: "Molten Cerberus Mount",
+    type: "mount",
+    thumbnail: "https://realis3d.xyz/images/4abfeec8-6199-4524-8e62-f8d470a47adf.png",
+    hoverImages: ["https://realis3d.xyz/images/f2a59d6b-3c11-449e-910a-651ee242bfd0.mp4","https://realis3d.xyz/images/b44e20bc-266d-47d3-942d-59a931f21c55.mp4"],
+    fileUrl: "https://realis3d.xyz/product/6709435252732bd598f97589",
+    creator: {name: "Realis", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/ab/103971-ab61f108721c673234430036a5c3374851f1d8f0.png"},
+    
+  },
 ];
 
 

@@ -55,11 +55,23 @@ export default function AssetDetailPage() {
                     <div className="space-y-4">
                         <Card className="overflow-hidden border shadow-2xl bg-card backdrop-blur-sm">
                             <div className="relative">
-                                <img
-                                    src={allImages[currentImageIndex]}
-                                    alt={asset.name}
-                                    className="w-full h-80 lg:h-96 object-cover"
-                                />
+
+                                {/* Dynamic renderingbased on file ending */}
+                                {allImages[currentImageIndex].endsWith('.mp4') ? (
+                                    <video
+                                        src={allImages[currentImageIndex]}
+                                        // controls
+                                        autoPlay
+                                        loop
+                                        className="w-full h-80 lg:h-96 object-cover"
+                                    />
+                                ) : (
+                                    <img
+                                        src={allImages[currentImageIndex]}
+                                        alt={asset.name}
+                                        className="w-full h-80 lg:h-96 object-cover"
+                                    />
+                                )}
 
                                 {/* Image Navigation Dots */}
                                 {allImages.length > 1 && (
@@ -93,7 +105,7 @@ export default function AssetDetailPage() {
 
                         {/* Thumbnail Strip */}
                         {allImages.length > 1 && (
-                            <div className="flex gap-2 overflow-x-auto pb-2">
+                            <div className="flex gap-2 overflow-x-auto p-1">
                                 {allImages.map((image, index) => (
                                     <button
                                         key={index}
@@ -103,11 +115,24 @@ export default function AssetDetailPage() {
                                             : 'border-border hover:border-purple-300'
                                             }`}
                                     >
-                                        <img
-                                            src={image}
-                                            alt={`Preview ${index + 1}`}
-                                            className="w-full h-full object-cover"
-                                        />
+                                        {
+                                            image.endsWith(".mp4") ? (
+                                                <video
+                                                    src={image}
+                                                    // controls
+                                                    autoPlay
+                                                    loop
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            ) : (
+
+                                                <img
+                                                    src={image}
+                                                    alt={`Preview ${index + 1}`}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            )
+                                        }
                                     </button>
                                 ))}
                             </div>
@@ -123,14 +148,6 @@ export default function AssetDetailPage() {
                                         {asset.name}
                                     </h1>
                                     <div className="flex gap-2">
-                                        {/* <Button
-                                            variant="outline"
-                                            size="sm"
-                                            onClick={() => setIsLiked(!isLiked)}
-                                            className={`cursor-pointer ${isLiked ? 'text-red-500 border-red-500' : ''}`}
-                                        >
-                                            <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />
-                                        </Button> */}
                                         <Button variant="outline" size="sm" className='cursor-pointer'>
                                             <Share2 className="h-4 w-4" />
                                         </Button>

@@ -112,20 +112,45 @@ export default function AssetCard({ asset }: { asset: Asset }) {
                             onMouseLeave={() => setShowPreview(false)}
                             onClick={handleCardClick}>
 
-                            {showPreview && asset.hoverImages?.length ? (<img
-                                src={currentPreview}
-                                alt="hoverImages"
-                                className="w-full h-full object-cover"
-                                loading="lazy" // Browser lädt erst, wenn sichtbar.
-                                decoding="async" // Rendering wird nicht blockiert.
-                            />) : (
-                                <img
-                                    src={asset.thumbnail}
-                                    alt={asset.name}
-                                    className="w-full h-full object-cover"
-                                    loading="lazy" // Browser lädt erst, wenn sichtbar.
-                                    decoding="async" // Rendering wird nicht blockiert.
-                                />)}
+                            {showPreview && asset.hoverImages?.length ? (
+                                // Hover Images - can be images or videos
+                                currentPreview?.endsWith('.mp4') ? (
+                                    <video
+                                        src={currentPreview}
+                                        autoPlay
+                                        loop
+                                        muted
+                                        className="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <img
+                                        src={currentPreview}
+                                        alt="hoverImages"
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                )
+                            ) : (
+                                // Thumbnail - can be images or videos
+                                asset.thumbnail.endsWith('.mp4') ? (
+                                    <video
+                                        src={asset.thumbnail}
+                                        autoPlay
+                                        loop
+                                        muted
+                                        className="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <img
+                                        src={asset.thumbnail}
+                                        alt={asset.name}
+                                        className="w-full h-full object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                )
+                            )}
                         </div>
                     ) : (
                         <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
@@ -133,7 +158,6 @@ export default function AssetCard({ asset }: { asset: Asset }) {
                         </div>
                     )}
                 </div>
-                {/* Inhalt */}
                 <CardHeader className="pb-1">
                     <h3 className="text-wrap font-bold text-xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
                         {asset.name}
