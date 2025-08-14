@@ -135,7 +135,7 @@ export default function AssetCard({ asset }: { asset: Asset }) {
                 </div>
                 {/* Inhalt */}
                 <CardHeader className="pb-1">
-                    <h3 className="font-bold text-xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
+                    <h3 className="text-wrap font-bold text-xl bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent leading-tight">
                         {asset.name}
                     </h3>
 
@@ -149,13 +149,15 @@ export default function AssetCard({ asset }: { asset: Asset }) {
                                     alt={asset.creator?.name}
                                 />
                                 {/* Badge Icon mit eigenem Container für korrekte Positionierung */}
-                                <div className="absolute -bottom-1 -right-1">
-                                    <SimpleTooltip content="verified user" side="top">
-                                        <div className="bg-blue-500 rounded-full h-4 w-4 flex items-center justify-center">
-                                            <BadgeCheckIcon className="h-full w-full text-white" />
-                                        </div>
-                                    </SimpleTooltip>
-                                </div>
+                                {asset.creator?.verified && (
+                                    <div className="absolute -bottom-1 -right-1">
+                                        <SimpleTooltip content="verified user" side="top">
+                                            <div className="bg-blue-500 rounded-full h-4 w-4 flex items-center justify-center">
+                                                <BadgeCheckIcon className="h-full w-full text-white" />
+                                            </div>
+                                        </SimpleTooltip>
+                                    </div>
+                                )}
                             </div>
 
                             <div>

@@ -36,7 +36,7 @@ export interface Asset {
   gender?: Gender[];
   hoverImages?: string[];
   classes?: CharacterClass[];
-  creator?: { name: string, avatar?: string, contact?: string}
+  creator?: { name: string, avatar?: string, contact?: string, verified?: boolean}
 }
 export function getAssetById(id: number): Asset | null {
   const found = dummyAssets.find(asset => asset.id === id);
@@ -55,7 +55,7 @@ export const dummyAssets: Asset[] = [
       "https://i0.wp.com/plechito.com/wp-content/uploads/2018/11/Santa_claus.jpg",
     ],
     fileUrl: "https://mega.nz/file/vlgXnYQB#8YL8rrh77GL7hI5rKhmVFwS0Ur8LGVG0AsFd94hPz1Q",
-    creator: {name: "plechito", avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
     set: true,
     gender: ["male", "female"],
     classes: ['warrior', 'ninja', 'sura', 'shaman', 'lycan'],
@@ -66,7 +66,7 @@ export const dummyAssets: Asset[] = [
     type: "weapon",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/elementor/thumbs/Bez-n%C3%A1zvu-4-nymmkwjuoavu9hu3znb9fnsz8grd9g6x7601bpcvls.png?w=1200&ssl=1",
     fileUrl: "https://mega.nz/file/vlgXnYQB#8YL8rrh77GL7hI5rKhmVFwS0Ur8LGVG0AsFd94hPz1Q",
-    creator: {name: "plechito", avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
     set: true,
     classes: ['warrior', 'ninja', 'sura', 'shaman', 'lycan']
   },
@@ -76,7 +76,7 @@ export const dummyAssets: Asset[] = [
     type: "mount",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2022/10/mount1.jpg?ssl=1",
     fileUrl: "https://mega.nz/file/H85xnazT#MKbgOdPx3HdbdCN_iGT6yPJzGDnEYc9dj9AhHX_ex7I",
-    creator: {name: "plechito", avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
   },
   {
     id: 4,
@@ -84,7 +84,7 @@ export const dummyAssets: Asset[] = [
     type: "npc",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2018/11/Santa_claus.jpg",
     fileUrl: "https://mega.nz/file/f5RmmYCS#06hjMsrg5-Y5J5sLcbwZ5oFEPAzwcn_2Ar1JLcuhS8Y",
-    creator: {name: "plechito", avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
   },
   {
     id: 5,
@@ -92,7 +92,7 @@ export const dummyAssets: Asset[] = [
     type: "map",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2018/11/blue_death.png",
     fileUrl: "https://mega.nz/file/WkYTnKzR#cR6sj9toNxjOuIB9bYfFNTKG9t9HgX-SqJRMaQNHL0U",
-    creator: {name: "plechito", avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
   },
   {
     id: 6,
@@ -100,7 +100,7 @@ export const dummyAssets: Asset[] = [
     type: "armor",
     thumbnail: "https://metin2.download/picture/47jzB0bYT6BjrFsJSF92Re7iGmC9X1g5/.jpg",
     fileUrl: "https://mega.nz/file/Pls0GCyK#…JhspDD8yOmybt8l4QB3p7sGjQ",
-    creator: {name: "Tatsumaru", avatar: "https://www.metin2downloads.to/cms/images/avatars/f7/79962-f7ec13be781c262ed103c5e1b1b2a45bbe553abf.jpg"},
+    creator: {name: "Tatsumaru", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/f7/79962-f7ec13be781c262ed103c5e1b1b2a45bbe553abf.jpg"},
     classes: ["warrior"],
     gender: ["male"],
   },
@@ -110,7 +110,7 @@ export const dummyAssets: Asset[] = [
     type: "pet",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2023/10/pet15.jpg?ssl=1",
     fileUrl: "https://mega.nz/file/SgoFQCJR#0FExmP4UXBl4zVvPdpKZt9ppMPHKtYJ6P_Q7YdKN2CQ",
-    creator: {name: "plechito", avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
   },
   {
     id: 8,
@@ -118,7 +118,7 @@ export const dummyAssets: Asset[] = [
     type: "costumes",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2021/10/costume_royal_phoenix.jpg?ssl=1",
     fileUrl: "https://mega.nz/file/64gxjaaR#-p5lpmN8GBUbySZ8zhcmWzGsRqlvlbwgeiRLn8UVkW8",
-    creator: {name: "plechito", avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
     set: true,
     gender: ["male", "female"],
     classes: ['warrior', 'ninja', 'sura', 'shaman', 'lycan'],
@@ -128,7 +128,7 @@ export const dummyAssets: Asset[] = [
     name: "Ancient arena",
     type: "map",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2025/04/map.jpg?ssl=1",
-    creator: {name: "plechito", avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
     price: "30€",   
   },
   {
@@ -136,7 +136,7 @@ export const dummyAssets: Asset[] = [
     name: "Guild wars map 3",
     type: "map",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2018/10/guild_wars_map3.png",
-    creator: {name: "plechito", avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
     price: "30€",   
   },
   {
@@ -144,9 +144,28 @@ export const dummyAssets: Asset[] = [
     name: "Guild wars map 2",
     type: "map",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2018/10/guild_wars_map2.png",
-    creator: {name: "plechito", avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
     price: "20€",   
   },
+  {
+    id: 12,
+    name: "Biogolist Icon Pack",
+    type: "icon",
+    set: true,
+    fileUrl: "https://mega.nz/file/9g0HBJTD#5pBdsPGP_2s8deBRSe1A7L_iWQOaifFyePz2kwgYlHo",
+    thumbnail: "https://metin2.download/picture/7CwBdxemZT2i7BeUWY655dF2a1JfhZrz/.png",
+    creator: {name: "creatifyx", verified: false, avatar: "https://www.metin2downloads.to/cms/images/avatars/34/104570-347e09815fe04ce58b0f1b9b33d3237f2b5c4f74.png"},
+  },
+  {
+    id: 13,
+    name: "Fire Dragon Weapon Set",
+    type: "weapon",
+    set: true,
+    fileUrl: "https://metin2.download/file/WPXp4pKf15CXwmT0S307aK5guv1MRHjv/",
+    thumbnail: "https://metin2.download/picture/9QjlailLA4yVN00MrJEbH6Op1ki2yma5/.png",
+    hoverImages: ["https://metin2.download/picture/bY0S043zX3ri8518L77NvoPwiCXa7G07/.gif", "https://metin2.download/picture/t85aAjZEqWUfCH9QKt0R3coz3mPI4gw8/.png"],
+    creator: {name: "Zrye", verified: true, avatar: "https://metin2.dev/uploads/profile-photos/monthly_2025_07/Unbenannt-1.thumb.jpg.f4928dfaa7ff595bb845a16b22641876.jpg"},
+  }
 ];
 
 

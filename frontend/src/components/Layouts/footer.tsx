@@ -3,7 +3,7 @@ function Footer() {
 
     return (
         <footer className="text-foreground w-full py-4 border-t border-gray-300 text-center text-sm">
-            <p>© {year} [dont know yet]. All rights reserved.</p>
+            <p>© {year} Metin2AssetHub. All rights reserved.</p>
         </footer>
     );
 }

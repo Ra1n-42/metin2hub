@@ -88,20 +88,30 @@ export function ReportDialogContent({ assetName, assetId }: ReportDialogProps) {
                     </RadioGroup>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 sm:max-w-[375px]">
                     <Label htmlFor="description" className="text-sm font-medium">
                         Additional Details (Optional)
                     </Label>
-                    <Textarea
-                        id="description"
-                        placeholder="Please provide more details about your report..."
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        className="min-h-[80px]"
-                    />
+                    <div className="relative">
+
+                        <Textarea
+                            id="description"
+                            placeholder="Please provide more details about your report..."
+                            value={description}
+                            onChange={(e) => {
+                                if (e.target.value.length <= 255) {
+                                    setDescription(e.target.value);
+                                }
+                            }}
+                            className="min-h-[80px]"
+                        />
+                        <p className="absolute bottom-2 right-2 text-sm text-gray-500">
+                            {description.length} / 255
+                        </p>
+                    </div>
                 </div>
 
-                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-3">
+                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-3 sm:max-w-[375px]">
                     <div className="flex gap-2">
                         <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-500 mt-0.5 flex-shrink-0" />
                         <p className="text-xs text-yellow-800 dark:text-yellow-200">
