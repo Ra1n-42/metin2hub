@@ -1,5 +1,5 @@
 export type CharacterClass = 'warrior' | 'ninja' | 'sura' | 'shaman' | 'lycan';
-export const assetTypes = ['weapon', 'armor', 'map', 'mount', 'npc', 'effect', 'icon', 'pet', 'costumes'] as const;
+export const assetTypes = ['weapon', 'armor', 'map', 'mount', 'npc', 'effect', 'icon', 'pet', 'costumes', "metinstone", "boss"] as const;
 type Gender = 'male' | 'female' ;
 
 // AssetType will be: 'weapon' | 'armor' | 'map' | 'mount' | 'npc' | 'effect' | 'icon'| 'pet' | 'costumes'
@@ -182,7 +182,102 @@ export const dummyAssets: Asset[] = [
     hoverImages: ["https://realis3d.xyz/images/f2a59d6b-3c11-449e-910a-651ee242bfd0.mp4","https://realis3d.xyz/images/b44e20bc-266d-47d3-942d-59a931f21c55.mp4"],
     fileUrl: "https://realis3d.xyz/product/6709435252732bd598f97589",
     creator: {name: "Realis", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/ab/103971-ab61f108721c673234430036a5c3374851f1d8f0.png"},
-    
+  },
+  {
+    id: 16,
+    name: "Batty Hatty",
+    type: "pet",
+    thumbnail: "https://realis3d.xyz/images/b4bc3c62-6935-4237-8488-29f38d83eccc.png",
+    hoverImages: ["https://realis3d.xyz/images/acfbc813-ae30-4bc0-8eeb-48ae395492b6.mp4", "https://realis3d.xyz/images/adb09caf-7ee2-4660-b99c-5371fd28eadc.mp4"],
+    creator: {name: "Realis", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/ab/103971-ab61f108721c673234430036a5c3374851f1d8f0.png"},
+    fileUrl: "https://realis3d.xyz/product/671a9cf85639084c2155bfea",
+  },
+  {
+    id: 17,
+    name: "Candle Wisp Pet",
+    type: "pet",
+    thumbnail: "https://realis3d.xyz/images/fdafe3c1-5423-46bb-9550-1018ead02780.png",
+    hoverImages: ["https://realis3d.xyz/images/e969e748-1b89-4cfe-9c6c-9ccbc39898b3.mp4", "https://realis3d.xyz/images/d643cfce-e7c5-4fd8-8df6-d67840bd3465.mp4"],
+    creator: {name: "Realis", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/ab/103971-ab61f108721c673234430036a5c3374851f1d8f0.png"},
+    fileUrl: "https://realis3d.xyz/product/6709365952732bd598f97588",
+  },
+  {
+    id: 18,
+    name: "Light black steel armour",
+    thumbnail: "https://i.imgur.com/t7NwAvy.jpg",
+    hoverImages: ["https://i.imgur.com/D1qbedI.gif", "https://i.imgur.com/JOQbLMh.gif"],
+    fileUrl: "https://mega.nz/file/GlsxBRZS#xYvcpg0khzf0iL_6LxjJqKoFOCaYJpKNAwLO5LulRLE",
+    creator: {name: "Tatsumaru", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/f7/79962-f7ec13be781c262ed103c5e1b1b2a45bbe553abf.jpg"},
+    type: "armor",
+    gender: ["male"],
+    classes: ["warrior"],
+  },
+  {
+    id: 19,
+    type: "armor",
+    name:"Jotun-Thrym set",
+    thumbnail: "https://i.imgur.com/k2ffU5V.png",
+    fileUrl: "https://mega.nz/file/fp0CSRqT#GfVnqp_TJxUwjEyEK6WKzozG9AxF8_xtW6xZkPGqZvY",
+    set: true,
+    creator: {name: "Tatsumaru", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/f7/79962-f7ec13be781c262ed103c5e1b1b2a45bbe553abf.jpg"},
+    gender: ["female", "male"],
+    classes: ["warrior", "ninja", "sura", "shaman"],
+  },
+  {
+    id: 20,
+    type: "mount",
+    name: "3 Rhinno mounts",
+    thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2021/07/mounts_rhinno.jpg?ssl=1",
+    fileUrl: "https://mega.nz/file/SowySBiJ#DUrYCt-_6YqguJ5oWETMGNobrqUS_RhWWVBfk8_UoGU",
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
+  },
+  {
+    id: 21,
+    type: "boss",
+    name: "Fish boss",
+    thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/elementor/thumbs/fishboss-o9n274m9rkjqwayy6nctikhqykij7t47g0jxxciyo0.jpg?w=1200&ssl=1",
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
+    fileUrl: "https://mega.nz/file/Gp52HaJK#5hwjChm6pvVcHWT5KckkM166N6j0jn-aC1gqR7lgh3Y",
+  },
+  {
+    id: 22,
+    type: "boss",
+    name: "Underground troll boss",
+    thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2019/06/duratus_trollboss.jpg?ssl=1",
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
+    fileUrl: "https://mega.nz/file/79QDiSYa#Lo_bLvUAQ2NLswrpXQh9HCbhHcjKyPxtrQ4800Y6jc8",
+  },
+  {
+    id: 23,
+    type: "boss",
+    name: "Plant boss",
+    thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/elementor/thumbs/plant_boss3-o46ratlit6r8p98a09be4maeoio8trry7t81eq9am8.jpg?w=1200&ssl=1",
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
+    fileUrl: "https://mega.nz/file/28IQBSwL#61z4_Nq5H16e0yzkhbnhmwLCWbHTZS99NzLWeBpu7ew",
+  },
+  {
+    id: 24,
+    type: "metinstone",
+    name:"Valentine stone",
+    thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/elementor/thumbs/metinstone1-o2728o600wszifcvku879mycgz6qd163ux6tnjnvuo.jpg?w=1200&ssl=1",
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
+    fileUrl: "https://mega.nz/file/z8QFhSKR#jGK4ehIgEhlJbkh_SHvpoME5WF3_e4p4YrVChy1nFCg",
+  },
+  {
+    id: 25,
+    type: "metinstone",
+    name:"Crystal stone 1",
+    thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/elementor/thumbs/crystal_metin1-nymmxwnh7somvay629ngxdoj2co5qpt8zivubi2tj4.png?w=1200&ssl=1",
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
+    fileUrl: "https://mega.nz/file/XwQWiaAK#A0u9NPaqmfSX32CU46unbzOmMKQDx-A0_FijzMDVeME",
+  },
+  {
+    id: 25,
+    type: "boss",
+    name:"Natural boss",
+    thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/elementor/thumbs/natural_boss_1-nymnxhthyzegft9795fytwdsqj9g663e7o2nfnb7y8.png?w=1200&ssl=1",
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
+    fileUrl: "https://mega.nz/file/W0Z2SI5J#F8rUm8__h15tuJVt5IGrTT9KgCwNTxCKJLPxcXiQGcI",
   },
 ];
 

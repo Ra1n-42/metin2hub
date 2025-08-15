@@ -143,7 +143,7 @@ export default function AssetCard({ asset }: { asset: Asset }) {
                                     />
                                 ) : (
                                     <img
-                                        src={asset.thumbnail}
+                                        src={`${asset.thumbnail}`}
                                         alt={asset.name}
                                         className="w-full h-full object-cover"
                                         loading="lazy"
