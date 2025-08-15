@@ -4,11 +4,12 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { SimpleTooltip } from "@/components/SimpleTooltip";
-import { Download, Flag, Flame, Eye, ArrowLeft, Share2, Tag, User, Mars, Venus, BadgeCheckIcon } from "lucide-react";
+import { Download, Flag, Flame, Eye, ArrowLeft, Share2, Tag, User, Mars, Venus, BadgeCheckIcon, Info } from "lucide-react";
 import type { Asset } from '@/data/assets';
 import { getAssetById, getCharacterImage } from '@/data/assets';
 import { Dialog, DialogTrigger } from '@/components/ui/dialog';
 import { ReportDialogContent } from '@/components/ReportDialog';
+import DescriptionRenderer from '@/components/SecureHtmlRenderer';
 
 export default function AssetDetailPage() {
     const { id } = useParams<{ id: string }>();
@@ -90,7 +91,7 @@ export default function AssetDetailPage() {
                                 )}
 
                                 {/* Stats Overlay */}
-                                <div className="absolute top-4 right-4 flex gap-2">
+                                {/* <div className="absolute top-4 right-4 flex gap-2">
                                     <div className="flex items-center gap-1 bg-black/50 backdrop-blur-sm rounded-full px-3 py-1 text-white text-sm">
                                         <Eye className="w-4 h-4 text-blue-400" />
                                         <span>{viewer}</span>
@@ -99,7 +100,7 @@ export default function AssetDetailPage() {
                                         <Flame className="w-4 h-4 text-red-400" />
                                         <span>{hotVotes}</span>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </Card>
 
@@ -153,7 +154,6 @@ export default function AssetDetailPage() {
                                         </Button>
                                         <Dialog>
                                             <DialogTrigger asChild>
-
                                                 <Button variant="outline" size="sm" className='cursor-pointer'>
                                                     <Flag className="h-4 w-4" />
                                                 </Button>
@@ -270,8 +270,8 @@ export default function AssetDetailPage() {
                                             </a>
                                         </Button>
                                     ) : (
-                                        <Button className="w-full h-12 text-lg font-semibold bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 transition-all duration-300 hover:shadow-lg hover:scale-105" asChild>
-                                            <a href={asset.fileUrl} download className='text-white'>
+                                        <Button variant="outline" className="w-full h-12 text-lg font-semibold" asChild>
+                                            <a href={asset.fileUrl} download>
                                                 <Download className="h-5 w-5 mr-2" />
                                                 Free Download
                                             </a>
@@ -283,24 +283,42 @@ export default function AssetDetailPage() {
                     </div>
                 </div>
 
-                {/* Additional Information */}
+                {/* Creator Description & Additional Information */}
                 <Card className="border shadow-xl bg-card backdrop-blur-sm">
                     <CardHeader>
-                        <h2 className="text-2xl font-bold">About this Asset</h2>
-                    </CardHeader>
-                    <CardContent>
-                        <div className="prose dark:prose-invert max-w-none">
-                            <p className="text-muted-foreground leading-relaxed">
-                                This {asset.type} asset "{asset.name}" is a high-quality addition to your Metin2 server.
-                                Created by {asset.creator?.name}, this asset has been viewed {viewer} times and received {hotVotes} hot votes from the community.
-                            </p>
-
-                            {asset.classes && asset.classes.length > 0 && (
-                                <p className="text-muted-foreground leading-relaxed mt-4">
-                                    This asset is compatible with the following character classes: {asset.classes.join(', ')}.
-                                    {asset.gender && asset.gender.length > 0 && ` Available for ${asset.gender.join(' and ')} characters.`}
-                                </p>
+                        <div className="flex items-center justify-between">
+                            <h2 className="text-2xl font-bold flex items-center gap-2">
+                                <Info className="h-6 w-6" />
+                                About this Asset
+                            </h2>
+                            {(asset.description || asset.descriptionHtml) && (
+                                <Badge variant="secondary" className="text-xs">
+                                    Creator Description
+                                </Badge>
                             )}
+                        </div>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        {/* Creator's custom description */}
+                        {(asset.description || asset.descriptionHtml) && (
+                            <DescriptionRenderer asset={asset} />
+                        )}
+
+                        {/* Default info section */}
+                        <div className={`${(asset.description || asset.descriptionHtml) ? 'pt-4 border-t border-border' : ''}`}>
+                            <div className="prose dark:prose-invert max-w-none">
+                                <p className="text-muted-foreground leading-relaxed">
+                                    This {asset.type} asset "{asset.name}" is a high-quality addition to your Metin2 server.
+                                    Created by {asset.creator?.name}, this asset has been viewed {viewer} times and received {hotVotes} hot votes from the community.
+                                </p>
+
+                                {asset.classes && asset.classes.length > 0 && (
+                                    <p className="text-muted-foreground leading-relaxed mt-4">
+                                        This asset is compatible with the following character classes: {asset.classes.join(', ')}.
+                                        {asset.gender && asset.gender.length > 0 && ` Available for ${asset.gender.join(' and ')} characters.`}
+                                    </p>
+                                )}
+                            </div>
                         </div>
                     </CardContent>
                 </Card>

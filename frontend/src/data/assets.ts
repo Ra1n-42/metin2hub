@@ -36,7 +36,10 @@ export interface Asset {
   gender?: Gender[];
   hoverImages?: string[];
   classes?: CharacterClass[];
-  creator?: { name: string, avatar?: string, contact?: string, verified?: boolean}
+  creator?: { name: string, avatar?: string, contact?: string, verified?: boolean},
+
+  description?: string;
+  descriptionHtml?: string;
 }
 export function getAssetById(id: number): Asset | null {
   const found = dummyAssets.find(asset => asset.id === id);
@@ -59,6 +62,12 @@ export const dummyAssets: Asset[] = [
     set: true,
     gender: ["male", "female"],
     classes: ['warrior', 'ninja', 'sura', 'shaman', 'lycan'],
+    description: `**What's Included:**
+    • Hair (Hats) are included
+    • Icons are included
+    • Password for .rar – **www.plechito.com**
+
+    *High-quality textures and detailed modeling for all character classes.*`,
   },
   {
     id: 2,
@@ -111,6 +120,9 @@ export const dummyAssets: Asset[] = [
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2023/10/pet15.jpg?ssl=1",
     fileUrl: "https://mega.nz/file/SgoFQCJR#0FExmP4UXBl4zVvPdpKZt9ppMPHKtYJ6P_Q7YdKN2CQ",
     creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
+    description: `Archive password – **www.plechito.com**
+
+    This mystical pet features animated flames and particle effects.`,
   },
   {
     id: 8,
@@ -165,6 +177,19 @@ export const dummyAssets: Asset[] = [
     thumbnail: "https://metin2.download/picture/9QjlailLA4yVN00MrJEbH6Op1ki2yma5/.png",
     hoverImages: ["https://metin2.download/picture/bY0S043zX3ri8518L77NvoPwiCXa7G07/.gif", "https://metin2.download/picture/t85aAjZEqWUfCH9QKt0R3coz3mPI4gw8/.png"],
     creator: {name: "Zrye", verified: true, avatar: "https://metin2.dev/uploads/profile-photos/monthly_2025_07/Unbenannt-1.thumb.jpg.f4928dfaa7ff595bb845a16b22641876.jpg"},
+    descriptionHtml: `
+      <div class="creator-description">
+        <h3 style="color: #ff6b35; margin-bottom: 10px;">🔥 Fire Dragon Arsenal</h3>
+        <div style="background: linear-gradient(135deg, #ff9a56, #ff6b35); padding: 15px; border-radius: 10px; color: white; margin: 10px 0;">
+          <strong>Special Features:</strong>
+          <ul style="margin: 8px 0; padding-left: 20px;">
+            <li>Animated flame effects</li>
+            <li>Custom particle systems</li>
+            <li>Enhanced weapon glow</li>
+          </ul>
+        </div>
+        <p><em>Installation guide included in download package.</em></p>
+      </div>`,
   },
   {
     id: 14,
@@ -278,6 +303,21 @@ export const dummyAssets: Asset[] = [
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/elementor/thumbs/natural_boss_1-nymnxhthyzegft9795fytwdsqj9g663e7o2nfnb7y8.png?w=1200&ssl=1",
     creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
     fileUrl: "https://mega.nz/file/W0Z2SI5J#F8rUm8__h15tuJVt5IGrTT9KgCwNTxCKJLPxcXiQGcI",
+  },
+  {
+    id: 26,
+    type: "map",
+    name: "Mirage island",
+    thumbnail: "https://plechito.com/wp-content/uploads/2023/05/map12.jpg",
+    hoverImages: ["https://plechito.com/wp-content/uploads/2023/05/map14.jpg", "https://plechito.com/wp-content/uploads/2023/05/map21.jpg", "https://plechito.com/wp-content/uploads/2023/05/map22.jpg", "https://plechito.com/wp-content/uploads/2023/05/map27.jpg", "https://plechito.com/wp-content/uploads/2023/05/map_main.jpg", "https://plechito.com/wp-content/uploads/2023/05/map1.jpg", "https://plechito.com/wp-content/uploads/2023/05/map6.jpg", "https://i0.wp.com/plechito.com/wp-content/uploads/2023/05/map_atlas.jpg?fit=512%2C512&ssl=1"],
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
+    price: "230€",
+    description: `**What's Included:**
+    • Size of the map is 9×9
+    • Map includes all monsters, bosses and stones (29 monsters, 4 main bosses, 4 low bosses, 5 stones)
+    • Regen is included
+    • Over 100 new objects, etc..
+    • Logo must be implemented!`,
   },
 ];
 

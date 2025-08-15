@@ -5,7 +5,7 @@ import type { Asset } from "@/data/assets";
 import { Button } from "@/components/ui/button";
 import { ArrowBigRightDash } from 'lucide-react';
 
-const ITEMS_PER_LOAD = 10;
+const ITEMS_PER_LOAD = 5;
 
 export default function AssetCategorySection({ title, items }: { title: string, items: Asset[] }) {
     const [visibleCount, setVisibleCount] = useState(ITEMS_PER_LOAD);
@@ -30,7 +30,7 @@ export default function AssetCategorySection({ title, items }: { title: string, 
             <h2 className="text-2xl font-bold mb-4">{title}</h2>
 
             <ScrollArea className="w-full whitespace-nowrap">
-                <div className="flex space-x-4 pb-4">
+                <div className="flex space-x-4 pb-4 mt-2 mb-2">
                     {visibleItems.map((asset) => (
                         <AssetCard key={asset.id} asset={asset} />
                     ))}
