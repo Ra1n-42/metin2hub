@@ -146,7 +146,7 @@ export default function AssetSearchPage() {
                 <Link to="/">
                     <Button variant="ghost" className="gap-2 hover:bg-accent cursor-pointer">
                         <ArrowLeft className="h-4 w-4" />
-                        Back to Assets
+                        Back to Home
                     </Button>
                 </Link>
             </div>
