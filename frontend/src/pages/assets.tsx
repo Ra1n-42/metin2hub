@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useCallback } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { dummyAssets } from "@/data/assets";
 import type { Asset } from "@/data/assets";
 import AssetGrid from "@/components/AssetGrid";
@@ -12,6 +12,10 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
+import { assetTypes } from "@/data/assets";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+
 const INITIAL_PAGE_SIZE = 20;
 const LOAD_MORE_SIZE = 10;
 
@@ -23,8 +27,8 @@ export default function AssetSearchPage() {
     const [filter, setFilter] = useState(() => {
         const typeFromUrl = searchParams.get("type");
         return typeFromUrl &&
-            ["map", "weapon", "armor", "mount", "npc", "effect", "icon", "pet", "costumes"].includes(typeFromUrl)
-            ? typeFromUrl
+            assetTypes.includes(typeFromUrl as typeof assetTypes[number])
+            ? typeFromUrl as typeof assetTypes[number]
             : "all";
     });
 
@@ -41,8 +45,8 @@ export default function AssetSearchPage() {
         const searchFromUrl = searchParams.get("search") || "";
 
         const newFilter = typeFromUrl &&
-            ["map", "weapon", "armor", "mount", "npc", "effect", "icon", "pet", "costumes"].includes(typeFromUrl)
-            ? typeFromUrl
+            assetTypes.includes(typeFromUrl as typeof assetTypes[number])
+            ? typeFromUrl as typeof assetTypes[number]
             : "all";
 
         setFilter(newFilter);
@@ -137,14 +141,23 @@ export default function AssetSearchPage() {
 
     return (
         <div className="px-4 md:px-8 py-12">
+            {/* Back Button */}
+            <div className="mb-6">
+                <Link to="/">
+                    <Button variant="ghost" className="gap-2 hover:bg-accent cursor-pointer">
+                        <ArrowLeft className="h-4 w-4" />
+                        Back to Assets
+                    </Button>
+                </Link>
+            </div>
             <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-                Assets durchsuchen
+                Assets Search
             </h1>
 
             <div className="flex flex-col md:flex-row gap-4 items-center justify-center max-w-3xl mx-auto mb-8">
                 <Input
                     type="text"
-                    placeholder="Nach Name suchen..."
+                    placeholder="Search name..."
                     value={search}
                     onChange={(e) => handleSearchChange(e.target.value)}
                     className="w-full md:w-[300px]"
@@ -155,15 +168,12 @@ export default function AssetSearchPage() {
                         <SelectValue placeholder="Typ wählen" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="all">Alle Typen</SelectItem>
-                        <SelectItem value="weapon">Waffen</SelectItem>
-                        <SelectItem value="armor">Rüstungen</SelectItem>
-                        <SelectItem value="map">Maps</SelectItem>
-                        <SelectItem value="mount">Reittiere</SelectItem>
-                        <SelectItem value="npc">NPCs</SelectItem>
-                        <SelectItem value="effect">Effekte</SelectItem>
-                        <SelectItem value="pet">Pets</SelectItem>
-                        <SelectItem value="costumes">Kostüme</SelectItem>
+                        <SelectItem value="all">All Types</SelectItem>
+                        {
+                            assetTypes.map((items) => (
+                                <SelectItem value={items}>{items.charAt(0).toUpperCase() + items.slice(1)}</SelectItem>
+                            ))
+                        }
                     </SelectContent>
                 </Select>
             </div>
@@ -182,10 +192,10 @@ export default function AssetSearchPage() {
                 {displayedAssets.length > 0 ? (
                     <>
                         Zeige {displayedAssets.length} von {filteredAssets.length} Assets
-                        {hasMore && " (scrollen Sie nach unten für mehr)"}
+                        {hasMore && " (scroll down for more)"}
                     </>
                 ) : (
-                    !isLoading && "Keine Assets gefunden"
+                    !isLoading && "No Assets Found"
                 )}
             </div>
 
@@ -195,7 +205,7 @@ export default function AssetSearchPage() {
             {/* Ende erreicht */}
             {!hasMore && displayedAssets.length > 0 && (
                 <div className="text-center text-gray-500 py-8">
-                    Alle Assets wurden geladen
+                    Alle Assets loaded.
                 </div>
             )}
         </div>

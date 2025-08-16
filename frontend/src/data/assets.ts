@@ -1,8 +1,8 @@
 export type CharacterClass = 'warrior' | 'ninja' | 'sura' | 'shaman' | 'lycan';
-export const assetTypes = ['weapon', 'armor', 'map', 'mount', 'npc', 'effect', 'icon', 'pet', 'costumes', "metinstone", "boss"] as const;
+export const assetTypes = ["weapon", "armor", "map", "mount", "npc", "effect", "icon", "pet", "costumes", "metinstone", "boss"] as const;
 type Gender = 'male' | 'female' ;
 
-// AssetType will be: 'weapon' | 'armor' | 'map' | 'mount' | 'npc' | 'effect' | 'icon'| 'pet' | 'costumes'
+// AssetType will be: 'weapon' | 'armor' ...
 type AssetType = typeof assetTypes[number];
 
 // Angepasste Hilfsfunktion, die die neuen Typen nutzt
@@ -86,6 +86,7 @@ export const dummyAssets: Asset[] = [
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2022/10/mount1.jpg?ssl=1",
     fileUrl: "https://mega.nz/file/H85xnazT#MKbgOdPx3HdbdCN_iGT6yPJzGDnEYc9dj9AhHX_ex7I",
     creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
+    description: `Archive password – **www.plechito.com**`,
   },
   {
     id: 4,
@@ -102,6 +103,8 @@ export const dummyAssets: Asset[] = [
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2018/11/blue_death.png",
     fileUrl: "https://mega.nz/file/WkYTnKzR#cR6sj9toNxjOuIB9bYfFNTKG9t9HgX-SqJRMaQNHL0U",
     creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
+    description: `**What's Included:**
+    • The boss room is placed in official devil tower map`,
   },
   {
     id: 6,
@@ -120,9 +123,7 @@ export const dummyAssets: Asset[] = [
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2023/10/pet15.jpg?ssl=1",
     fileUrl: "https://mega.nz/file/SgoFQCJR#0FExmP4UXBl4zVvPdpKZt9ppMPHKtYJ6P_Q7YdKN2CQ",
     creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png"},
-    description: `Archive password – **www.plechito.com**
-
-    This mystical pet features animated flames and particle effects.`,
+    description: `Archive password – **www.plechito.com**`,
   },
   {
     id: 8,
@@ -134,6 +135,8 @@ export const dummyAssets: Asset[] = [
     set: true,
     gender: ["male", "female"],
     classes: ['warrior', 'ninja', 'sura', 'shaman', 'lycan'],
+    description: `Archive password – **www.plechito.com**`,
+
   },
   {
     id: 9,
@@ -141,7 +144,10 @@ export const dummyAssets: Asset[] = [
     type: "map",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2025/04/map.jpg?ssl=1",
     creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
-    price: "30€",   
+    price: "30€",
+    description: `**Info**
+    • Great for PvP
+    • Great for boss battles`,
   },
   {
     id: 10,
@@ -149,7 +155,10 @@ export const dummyAssets: Asset[] = [
     type: "map",
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2018/10/guild_wars_map3.png",
     creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
-    price: "30€",   
+    price: "30€",
+    description: `**Info**
+    • Size of the map is 2×2
+    • This is only map, you have to implement the map to your guild wars system by yourself!`, 
   },
   {
     id: 11,
@@ -158,6 +167,9 @@ export const dummyAssets: Asset[] = [
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2018/10/guild_wars_map2.png",
     creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
     price: "20€",   
+    description: `**Info**
+    • Size of the map is 2×2
+    • This is only map, you have to implement the map to your guild wars system by yourself!`,
   },
   {
     id: 12,
@@ -255,6 +267,10 @@ export const dummyAssets: Asset[] = [
     thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2021/07/mounts_rhinno.jpg?ssl=1",
     fileUrl: "https://mega.nz/file/SowySBiJ#DUrYCt-_6YqguJ5oWETMGNobrqUS_RhWWVBfk8_UoGU",
     creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
+    description: `**What's Included:**
+    • Archive password  www.plechito.com 
+    • Icons are included`,
+    
   },
   {
     id: 21,
@@ -318,6 +334,17 @@ export const dummyAssets: Asset[] = [
     • Regen is included
     • Over 100 new objects, etc..
     • Logo must be implemented!`,
+  },
+  {
+    id: 27,
+    name: "Guild wars map 1",
+    type: "map",
+    thumbnail: "https://i0.wp.com/plechito.com/wp-content/uploads/2018/10/GuildWarsMap1.png",
+    creator: {name: "plechito", verified: true, avatar: "https://www.metin2downloads.to/cms/images/avatars/7b/76141-7bc97f64a421617ae3553fcd1b1b4652e0697518.png", contact:"https://discord.com/users/504640690190417920"},
+    price: "20€",   
+    description: `**Info**
+    • Size of the map is 2×2
+    • This is only map, you have to implement the map to your guild wars system by yourself!`,
   },
 ];
 
