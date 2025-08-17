@@ -28,7 +28,8 @@ export default function Home() {
                 </div>
 
             </section>
-            <section className="mb-20">
+
+            <section className="container mx-auto px-4 py-8 max-w-7xl">
                 {Object.entries(groupedAssets).map(([title, items]) => (
                     <div key={title}>
                         <AssetCategorySection key={title} title={title} items={items} />

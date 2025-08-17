@@ -5,7 +5,7 @@ import { getCharacterImage } from "@/data/assets";
 import { Mars, Venus, Download, BadgeCheckIcon, Flame, Eye, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SimpleTooltip } from "@/components/SimpleTooltip";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 
@@ -125,35 +125,36 @@ export default function AssetCard({ asset }: { asset: Asset }) {
                     </h3>
 
                     {/* Creator info with enhanced styling */}
-                    {/* <Link to={"/"} > */}
-                    <div className="flex items-center space-x-3 rounded-2xl">
-                        <div className="relative">
-                            <img
-                                className="rounded-full h-9 w-9 ring-2 ring-gray-500 dark:ring-green-500"
-                                src={asset.creator?.avatar}
-                                alt={asset.creator?.name}
-                            />
-                            {/* Badge Icon mit eigenem Container für korrekte Positionierung */}
-                            {asset.creator?.verified && (
-                                <div className="absolute -bottom-1 -right-1">
-                                    <SimpleTooltip content="verified user" side="top">
-                                        <div className="bg-blue-500 rounded-full h-4 w-4 flex items-center justify-center">
-                                            <BadgeCheckIcon className="h-full w-full text-white" />
-                                        </div>
-                                    </SimpleTooltip>
-                                </div>
-                            )}
-                        </div>
+                    <Link to={`/creator/${encodeURIComponent(asset.creator?.name || '')}`} className="block mb-4">
 
-                        <div>
-                            <p className="dark:text-gray-200 text-foreground font-medium text-xl">{asset.creator?.name}</p>
-                            <p className="text-sm text-muted-foreground flex items-center gap-1">
-                                <User className="h-3 w-3" />
-                                Creator
-                            </p>
+                        <div className="flex items-center space-x-3 rounded-2xl">
+                            <div className="relative">
+                                <img
+                                    className="rounded-full h-9 w-9 ring-2 ring-gray-500 dark:ring-green-500"
+                                    src={asset.creator?.avatar}
+                                    alt={asset.creator?.name}
+                                />
+                                {/* Badge Icon mit eigenem Container für korrekte Positionierung */}
+                                {asset.creator?.verified && (
+                                    <div className="absolute -bottom-1 -right-1">
+                                        <SimpleTooltip content="verified user" side="top">
+                                            <div className="bg-blue-500 rounded-full h-4 w-4 flex items-center justify-center">
+                                                <BadgeCheckIcon className="h-full w-full text-white" />
+                                            </div>
+                                        </SimpleTooltip>
+                                    </div>
+                                )}
+                            </div>
+
+                            <div>
+                                <p className="dark:text-gray-200 text-foreground font-medium text-xl">{asset.creator?.name}</p>
+                                <p className="text-sm text-muted-foreground flex items-center gap-1">
+                                    <User className="h-3 w-3" />
+                                    Creator
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    {/* </Link> */}
+                    </Link>
                 </CardHeader>
 
                 <CardContent className="flex flex-col gap-3">
