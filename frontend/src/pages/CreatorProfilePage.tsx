@@ -116,7 +116,7 @@ export default function CreatorProfilePage() {
                 </div>
 
                 {/* Creator Profile Header */}
-                <Card className="border-1 shadow-2xl mb-8">
+                <Card className="border-1 shadow-lg mb-8">
                     <CardContent className="p-8">
                         <div className="flex flex-col md:flex-row gap-8">
                             {/* Creator Avatar and Basic Info */}
@@ -171,7 +171,7 @@ export default function CreatorProfilePage() {
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                     <div className="text-center md:text-left">
                                         <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                                            <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center">
+                                            <div className="w-8 h-8 rounded-full flex items-center justify-center border-1">
                                                 <Eye className="h-4 w-4 text-blue-600" />
                                             </div>
                                         </div>
@@ -181,7 +181,7 @@ export default function CreatorProfilePage() {
 
                                     <div className="text-center md:text-left">
                                         <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                                            <div className="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                                            <div className="w-8 h-8 border-1 rounded-full flex items-center justify-center">
                                                 <Download className="h-4 w-4 text-green-600" />
                                             </div>
                                         </div>
@@ -191,7 +191,7 @@ export default function CreatorProfilePage() {
 
                                     <div className="text-center md:text-left">
                                         <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
-                                            <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center">
+                                            <div className="w-8 h-8 border-1 rounded-full flex items-center justify-center">
                                                 <Flame className="h-4 w-4 text-purple-600" />
                                             </div>
                                         </div>
@@ -205,7 +205,7 @@ export default function CreatorProfilePage() {
                 </Card>
 
                 {/* Filter Tabs */}
-                <Card className="border-0 shadow-lg bg-white dark:bg-gray-900 mb-8">
+                <Card className="border-1 shadow-lg mb-8">
                     <CardHeader>
                         <div className="flex flex-wrap gap-2">
                             {assetTypes.map((type) => (
@@ -213,7 +213,7 @@ export default function CreatorProfilePage() {
                                     key={type}
                                     variant={selectedFilter === type ? "default" : "outline"}
                                     size="sm"
-                                    className={`capitalize ${selectedFilter === type
+                                    className={`capitalize cursor-pointer transition-all duration-300 hover:scale-105 ${selectedFilter === type
                                         ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white"
                                         : ""
                                         }`}

@@ -110,7 +110,7 @@ export default function AssetCard({ asset }: { asset: Asset }) {
                             </div>
                         </div>
                         {/* info */}
-                        <div className="absolute top-3 right-3 opacity-50">
+                        <div className="absolute top-3 right-3 opacity-50 text-white">
                             <SimpleTooltip content={"Asset Info"} side="top">
                                 <Info />
                             </SimpleTooltip>
