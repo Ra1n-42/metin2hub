@@ -2,7 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import type { Asset } from "@/data/assets";
 import { getCharacterImage } from "@/data/assets";
-import { Mars, Venus, Download, BadgeCheckIcon, Flame, Eye, User } from "lucide-react";
+import { Mars, Venus, Download, BadgeCheckIcon, Flame, Eye, User, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { SimpleTooltip } from "@/components/SimpleTooltip";
 import { Link, useNavigate } from "react-router-dom";
@@ -84,7 +84,6 @@ export default function AssetCard({ asset }: { asset: Asset }) {
 
                     {/* Minimal overlay - only on hover */}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300">
-
                         {/* Bottom overlay with key info */}
                         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
                             <div className="flex justify-between items-end text-white text-sm">
@@ -110,6 +109,12 @@ export default function AssetCard({ asset }: { asset: Asset }) {
                                 )}
                             </div>
                         </div>
+                        {/* info */}
+                        <div className="absolute top-3 right-3 opacity-50">
+                            <SimpleTooltip content={"Asset Info"} side="top">
+                                <Info />
+                            </SimpleTooltip>
+                        </div>
                     </div>
 
                     {/* Asset type badge */}
@@ -127,7 +132,7 @@ export default function AssetCard({ asset }: { asset: Asset }) {
                     {/* Creator info with enhanced styling */}
                     <Link to={`/creator/${encodeURIComponent(asset.creator?.name || '')}`} className="block mb-4">
 
-                        <div className="flex items-center space-x-3 rounded-2xl">
+                        <div className="flex items-center space-x-3 rounded-2xl transition-all duration-300 hover:scale-105 hover:-translate-y-1">
                             <div className="relative">
                                 <img
                                     className="rounded-full h-9 w-9 ring-2 ring-gray-500 dark:ring-green-500"
