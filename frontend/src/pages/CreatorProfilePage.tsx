@@ -4,10 +4,12 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { SimpleTooltip } from "@/components/SimpleTooltip";
-import { ArrowLeft, BadgeCheckIcon, User, Download, Eye, Flame, MessageCircle } from "lucide-react";
+import { ArrowLeft, BadgeCheckIcon, User, Download, Eye, Flame, MessageCircle, Heart, Star, Clock } from "lucide-react";
 import type { Asset } from '@/data/assets';
 import { dummyAssets } from '@/data/assets';
 import AssetCard from '@/components/AssetCard';
+
+
 
 // Creator interface
 interface Creator {
@@ -66,6 +68,129 @@ function getBioForCreator(name: string): string {
 
     return bios[name.toLowerCase()] || "Passionate Metin2 content creator dedicated to bringing high-quality assets to the community.";
 }
+// Erweiterte Creator Interface für Metin2 Asset-Hub
+interface ExtendedCreator extends Creator {
+    // Bestehende Felder...
+
+    // Community-spezifische Felder
+    specializations?: ('maps' | 'armor' | 'weapons' | 'npcs' | 'ui' | 'textures' | 'animations')[];
+    gameExperience?: number; // Jahre Metin2 Modding Erfahrung
+    favoriteAssetType?: string;
+    totalLikes?: number;
+    averageRating?: number;
+    lastActivity?: string; // Letzter Upload/Update
+
+    // Qualitäts-Indikatoren
+    qualityBadges?: ('high_poly' | 'optimized' | 'animated' | 'textured' | 'original_design')[];
+    compatibilityTags?: ('client_2014' | 'client_2016' | 'client_modern' | 'all_versions')[];
+
+    // Social/Community
+    discordUsername?: string;
+    websiteUrl?: string;
+    donationLink?: string;
+
+    // Statistiken
+    mostPopularAsset?: Asset;
+    recentUploads?: Asset[];
+    collaborations?: string[]; // Namen anderer Creator
+
+    // Aktivität
+    uploadFrequency?: 'daily' | 'weekly' | 'monthly' | 'occasional';
+    activeProjects?: number;
+    commissionsOpen?: boolean;
+}
+
+// Neue Stats Komponenten für Metin2 Community
+const Metin2CreatorStats = ({ creator }: { creator: ExtendedCreator }) => {
+    const views = creator.totalViews ?? 0;
+    const downloads = creator.totalDownloads ?? 0;
+    const assets = creator.totalAssets ?? 0;
+    const likes = creator.totalLikes ?? 0;
+    const rating = creator.averageRating ?? 0;
+
+    return (
+        <div className="space-y-8">
+            {/* Haupt-Stats Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="text-center p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
+                    <Eye className="h-6 w-6 text-blue-600 mx-auto mb-2" />
+                    <p className="text-xl font-bold">{views.toLocaleString()}</p>
+                    <p className="text-sm text-muted-foreground">Views</p>
+                </div>
+
+                <div className="text-center p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                    <Download className="h-6 w-6 text-green-600 mx-auto mb-2" />
+                    <p className="text-xl font-bold">{downloads.toLocaleString()}</p>
+                    <p className="text-sm text-muted-foreground">Downloads</p>
+                </div>
+
+                <div className="text-center p-4 rounded-lg bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800">
+                    <Flame className="h-6 w-6 text-purple-600 mx-auto mb-2" />
+                    <p className="text-xl font-bold">{assets}</p>
+                    <p className="text-sm text-muted-foreground">Assets</p>
+                </div>
+
+                <div className="text-center p-4 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                    <Heart className="h-6 w-6 text-red-600 mx-auto mb-2" />
+                    <p className="text-xl font-bold">{likes.toLocaleString()}</p>
+                    <p className="text-sm text-muted-foreground">Likes</p>
+                </div>
+            </div>
+
+            {/* Rating und Erfahrung */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="p-6 rounded-xl border border-gray-200 dark:border-gray-800">
+                    <h3 className="font-semibold mb-4 flex items-center gap-2">
+                        <Star className="h-5 w-5 text-yellow-500" />
+                        Community Rating
+                    </h3>
+                    <div className="flex items-center gap-4">
+                        <div className="text-3xl font-bold">{rating.toFixed(1)}</div>
+                        <div className="flex-1">
+                            <div className="flex gap-1 mb-1">
+                                {[...Array(5)].map((_, i) => (
+                                    <Star
+                                        key={i}
+                                        className={`h-4 w-4 ${i < Math.floor(rating) ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}`}
+                                    />
+                                ))}
+                            </div>
+                            <p className="text-sm text-muted-foreground">Based on community feedback</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="p-6 rounded-xl border border-gray-200 dark:border-gray-800">
+                    <h3 className="font-semibold mb-4 flex items-center gap-2">
+                        <Clock className="h-5 w-5 text-blue-500" />
+                        Experience
+                    </h3>
+                    <div className="space-y-2">
+                        <div className="flex justify-between">
+                            <span className="text-sm text-muted-foreground">Modding Since</span>
+                            <span className="font-medium">{creator.gameExperience || 'N/A'} years</span>
+                        </div>
+                        <div className="flex justify-between">
+                            <span className="text-sm text-muted-foreground">Upload Frequency</span>
+                            <span className="font-medium capitalize">{creator.uploadFrequency || 'N/A'}</span>
+                        </div>
+                        <div className="flex justify-between">
+                            <span className="text-sm text-muted-foreground">Active Projects</span>
+                            <span className="font-medium">{creator.activeProjects || 0}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
+
+
+
+
+
 
 export default function CreatorProfilePage() {
     const { name } = useParams<{ name: string }>();
@@ -116,7 +241,7 @@ export default function CreatorProfilePage() {
                 </div>
 
                 {/* Creator Profile Header */}
-                <Card className="border-1 shadow-lg mb-8">
+                <Card className="border-1 mb-8">
                     <CardContent className="p-8">
                         <div className="flex flex-col md:flex-row gap-8">
                             {/* Creator Avatar and Basic Info */}
@@ -130,8 +255,8 @@ export default function CreatorProfilePage() {
                                     {creator.verified && (
                                         <div className="absolute -bottom-2 -right-2">
                                             <SimpleTooltip content="Verified Creator" side="top">
-                                                <div className="bg-blue-500 rounded-full h-8 w-8 flex items-center justify-center ring-4 ring-white dark:ring-gray-900">
-                                                    <BadgeCheckIcon className="h-5 w-5 text-white" />
+                                                <div className="bg-blue-500 rounded-full h-6 w-6 flex items-center justify-center">
+                                                    <BadgeCheckIcon className="w-full h-full text-white" />
                                                 </div>
                                             </SimpleTooltip>
                                         </div>
@@ -168,7 +293,7 @@ export default function CreatorProfilePage() {
                                 </p>
 
                                 {/* Stats Grid */}
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                     <div className="text-center md:text-left">
                                         <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
                                             <div className="w-8 h-8 rounded-full flex items-center justify-center border-1">
@@ -198,14 +323,15 @@ export default function CreatorProfilePage() {
                                         <p className="text-2xl font-bold">{creator.totalAssets}</p>
                                         <p className="text-sm text-muted-foreground">Assets Created</p>
                                     </div>
-                                </div>
+                                </div> */}
+                                <Metin2CreatorStats creator={creator} />
                             </div>
                         </div>
                     </CardContent>
                 </Card>
 
                 {/* Filter Tabs */}
-                <Card className="border-1 shadow-lg mb-8">
+                <Card className="border-1 mb-8">
                     <CardHeader>
                         <div className="flex flex-wrap gap-2">
                             {assetTypes.map((type) => (
