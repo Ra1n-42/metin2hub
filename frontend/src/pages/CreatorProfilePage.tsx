@@ -118,7 +118,7 @@ const Metin2CreatorStats = ({ creator }: { creator: ExtendedCreator }) => {
                     <p className="text-sm text-muted-foreground">Views</p>
                 </div>
 
-                <div className="text-center p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                <div className="text-center p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border-1 border-green-200 dark:border-green-800">
                     <Download className="h-6 w-6 text-green-600 mx-auto mb-2" />
                     <p className="text-xl font-bold">{downloads.toLocaleString()}</p>
                     <p className="text-sm text-muted-foreground">Downloads</p>
@@ -139,7 +139,7 @@ const Metin2CreatorStats = ({ creator }: { creator: ExtendedCreator }) => {
 
             {/* Rating und Erfahrung */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-6 rounded-xl border border-gray-200 dark:border-gray-800">
+                <div className="p-6 rounded-xl border ">
                     <h3 className="font-semibold mb-4 flex items-center gap-2">
                         <Star className="h-5 w-5 text-yellow-500" />
                         Community Rating
@@ -160,7 +160,7 @@ const Metin2CreatorStats = ({ creator }: { creator: ExtendedCreator }) => {
                     </div>
                 </div>
 
-                <div className="p-6 rounded-xl border border-gray-200 dark:border-gray-800">
+                <div className="p-6 rounded-xl border">
                     <h3 className="font-semibold mb-4 flex items-center gap-2">
                         <Clock className="h-5 w-5 text-blue-500" />
                         Experience
